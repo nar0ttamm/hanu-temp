@@ -1,136 +1,169 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Container, Grid, Typography, IconButton, styled } from '@mui/material';
-import { Facebook, Twitter, Instagram, LinkedIn, Email, Phone, LocationOn } from '@mui/icons-material';
-
-const FooterContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-  color: theme.palette.common.black,
-  position: 'relative',
-  padding: theme.spacing(6, 0, 2),
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: '4px',
-    background: `linear-gradient(to right, ${theme.palette.accent1.main}, ${theme.palette.accent2.main})`,
-  },
-}));
-
-const FooterHeading = styled(Typography)(({ theme }) => ({
-  fontWeight: 600,
-  marginBottom: theme.spacing(3),
-  position: 'relative',
-  paddingBottom: theme.spacing(1),
-  '&::after': {
-    content: '""',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    width: '40px',
-    height: '2px',
-    backgroundColor: theme.palette.accent1.main,
-  },
-}));
-
-const FooterLink = styled(Link)(({ theme }) => ({
-  color: 'inherit',
-  textDecoration: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  gap: theme.spacing(1),
-  marginBottom: theme.spacing(1.5),
-  transition: 'color 0.3s ease',
-  '&:hover': {
-    color: theme.palette.accent1.main,
-  },
-  '& .MuiSvgIcon-root': {
-    fontSize: '1.2rem',
-  },
-}));
-
-const SocialButton = styled(IconButton)(({ theme }) => ({
-  color: theme.palette.common.black,
-  '&:hover': {
-    backgroundColor: theme.palette.accent1.main,
-    color: theme.palette.common.white,
-  },
-}));
+import { Box, Container, Grid, Typography, TextField, Button, IconButton, Divider, useTheme } from '@mui/material';
+import { Facebook, Twitter, Instagram, YouTube, Email, LocationOn, Phone } from '@mui/icons-material';
 
 const Footer = () => {
+  const theme = useTheme();
+
+  const footerLinks = [
+    {
+      title: 'Shop',
+      links: [
+        { text: 'Rugby', url: '/categories/rugby' },
+        { text: 'Volleyball', url: '/categories/volleyball' },
+        { text: 'Field Hockey', url: '/categories/field-hockey' },
+        { text: 'Track & Field', url: '/categories/track-field' },
+        { text: 'Soccer', url: '/categories/soccer' },
+        { text: 'Off-Field', url: '/categories/off-field' },
+      ],
+    },
+    {
+      title: 'Support',
+      links: [
+        { text: 'Contact Us', url: '/contact' },
+        { text: 'FAQs', url: '/faqs' },
+        { text: 'Shipping & Returns', url: '/shipping' },
+        { text: 'Size Guide', url: '/size-guide' },
+        { text: 'Track Order', url: '/track-order' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { text: 'About Us', url: '/about' },
+        { text: 'Team Customization', url: '/customize' },
+        { text: 'Careers', url: '/careers' },
+        { text: 'Blog', url: '/blog' },
+        { text: 'Privacy Policy', url: '/privacy' },
+        { text: 'Terms of Service', url: '/terms' },
+      ],
+    },
+  ];
+
   return (
-    <FooterContainer>
+    <Box sx={{ 
+      bgcolor: theme.palette.secondary.main, 
+      color: theme.palette.text.primary,
+      pt: 6, 
+      pb: 4 
+    }}>
       <Container maxWidth="lg">
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={3}>
-            <FooterHeading variant="h6">About Us</FooterHeading>
+          {/* Logo and About */}
+          <Grid item xs={12} md={4}>
+            <Box component={Link} to="/" sx={{ display: 'block', mb: 2 }}>
+              <Box component="img" src="/images/logo.svg" alt="Hanu Sports" sx={{ height: 60 }} />
+            </Box>
             <Typography variant="body2" sx={{ mb: 2 }}>
-              Hanu-Sports is your premier destination for high-quality team sports equipment and apparel. We're dedicated to helping teams achieve excellence.
+              Premium sports equipment and apparel for rugby, volleyball, field hockey, track & field, and more. Custom team outfitting and personalized gear for athletes at all levels.
             </Typography>
             <Box sx={{ display: 'flex', gap: 1 }}>
-              <SocialButton>
+              <IconButton color="primary" aria-label="Facebook">
                 <Facebook />
-              </SocialButton>
-              <SocialButton>
+              </IconButton>
+              <IconButton color="primary" aria-label="Twitter">
                 <Twitter />
-              </SocialButton>
-              <SocialButton>
+              </IconButton>
+              <IconButton color="primary" aria-label="Instagram">
                 <Instagram />
-              </SocialButton>
-              <SocialButton>
-                <LinkedIn />
-              </SocialButton>
+              </IconButton>
+              <IconButton color="primary" aria-label="YouTube">
+                <YouTube />
+              </IconButton>
             </Box>
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <FooterHeading variant="h6">Quick Links</FooterHeading>
-            <FooterLink to="/products">All Products</FooterLink>
-            <FooterLink to="/team-offers">Team Offers</FooterLink>
-            <FooterLink to="/custom-designs">Custom Designs</FooterLink>
-            <FooterLink to="/about">About Us</FooterLink>
-            <FooterLink to="/contact">Contact</FooterLink>
-          </Grid>
+          {/* Links */}
+          {footerLinks.map((column) => (
+            <Grid item xs={6} sm={4} md={2} key={column.title}>
+              <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
+                {column.title}
+              </Typography>
+              <Box component="ul" sx={{ p: 0, listStyle: 'none' }}>
+                {column.links.map((link) => (
+                  <Box component="li" key={link.text} sx={{ mb: 1 }}>
+                    <Link to={link.url} style={{ color: theme.palette.text.primary, textDecoration: 'none' }}>
+                      <Typography variant="body2" sx={{ '&:hover': { color: theme.palette.primary.main } }}>
+                        {link.text}
+                      </Typography>
+                    </Link>
+                  </Box>
+                ))}
+              </Box>
+            </Grid>
+          ))}
 
-          <Grid item xs={12} sm={6} md={3}>
-            <FooterHeading variant="h6">Categories</FooterHeading>
-            <FooterLink to="/category/rugby">Rugby</FooterLink>
-            <FooterLink to="/category/volleyball">Volleyball</FooterLink>
-            <FooterLink to="/category/field-hockey">Field Hockey</FooterLink>
-            <FooterLink to="/category/track-field">Track & Field</FooterLink>
-            <FooterLink to="/category/soccer">Soccer</FooterLink>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <FooterHeading variant="h6">Contact Info</FooterHeading>
-            <FooterLink to="mailto:info@hanu-sports.com">
-              <Email /> info@hanu-sports.com
-            </FooterLink>
-            <FooterLink to="tel:+1234567890">
-              <Phone /> +1 (234) 567-890
-            </FooterLink>
-            <FooterLink to="/contact">
-              <LocationOn /> 123 Sports Avenue, Stadium District
-            </FooterLink>
+          {/* Newsletter */}
+          <Grid item xs={12} md={4}>
+            <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
+              Sign up for our newsletter
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              Get updates on new products, exclusive offers, and sports tips.
+            </Typography>
+            <Box sx={{ display: 'flex' }}>
+              <TextField
+                size="small"
+                placeholder="Your email"
+                variant="outlined"
+                fullWidth
+                sx={{ 
+                  bgcolor: 'white', 
+                  borderRadius: '4px 0 0 4px',
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: '4px 0 0 4px',
+                  }
+                }}
+              />
+              <Button 
+                variant="contained" 
+                color="primary"
+                sx={{ 
+                  borderRadius: '0 4px 4px 0', 
+                  boxShadow: 'none',
+                  color: theme.palette.text.primary
+                }}
+              >
+                Subscribe
+              </Button>
+            </Box>
+            <Box sx={{ mt: 3 }}>
+              <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                <Email fontSize="small" sx={{ mr: 1 }} /> support@hanusports.com
+              </Typography>
+              <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                <Phone fontSize="small" sx={{ mr: 1 }} /> +1 (555) 123-4567
+              </Typography>
+              <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center' }}>
+                <LocationOn fontSize="small" sx={{ mr: 1 }} /> 123 Sports Avenue, Athletic City, SP 12345
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
 
-        <Box 
-          sx={{ 
-            borderTop: '1px solid rgba(0,0,0,0.1)', 
-            mt: 4, 
-            pt: 2,
-            textAlign: 'center',
-          }}
-        >
-          <Typography variant="body2">
-            © {new Date().getFullYear()} Hanu-Sports. All rights reserved.
+        <Divider sx={{ my: 4, borderColor: 'rgba(0, 0, 0, 0.1)' }} />
+        
+        {/* Bottom */}
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: 'center' }}>
+          <Typography variant="body2" sx={{ mb: { xs: 1, sm: 0 } }}>
+            © {new Date().getFullYear()} Hanu Sports. All rights reserved.
           </Typography>
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <Link to="/privacy" style={{ color: theme.palette.text.primary, textDecoration: 'none' }}>
+              <Typography variant="body2" sx={{ '&:hover': { color: theme.palette.primary.main } }}>
+                Privacy Policy
+              </Typography>
+            </Link>
+            <Link to="/terms" style={{ color: theme.palette.text.primary, textDecoration: 'none' }}>
+              <Typography variant="body2" sx={{ '&:hover': { color: theme.palette.primary.main } }}>
+                Terms of Service
+              </Typography>
+            </Link>
+          </Box>
         </Box>
       </Container>
-    </FooterContainer>
+    </Box>
   );
 };
 

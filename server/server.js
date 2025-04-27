@@ -19,9 +19,23 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hanu-spor
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.log(err));
 
-// Routes will be added here
+// Routes
+app.use('/api/products', require('./routes/api/products'));
+app.use('/api/orders', require('./routes/api/orders'));
+app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/upload', require('./routes/api/upload'));
+
 app.get('/', (req, res) => {
     res.json({ message: 'Welcome to Hanu-Sports API' });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ 
+        message: 'Something went wrong!',
+        error: process.env.NODE_ENV === 'development' ? err.message : 'Server error'
+    });
 });
 
 const PORT = process.env.PORT || 5000;

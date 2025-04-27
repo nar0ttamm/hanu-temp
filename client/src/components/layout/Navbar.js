@@ -1,7 +1,40 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, InputBase, Badge, IconButton, Box, Drawer, List, ListItem, ListItemText, useTheme, styled } from '@mui/material';
-import { Search as SearchIcon, ShoppingCart, Menu as MenuIcon, Person } from '@mui/icons-material';
+import { 
+  AppBar, 
+  Toolbar, 
+  InputBase, 
+  Badge, 
+  IconButton, 
+  Box, 
+  Drawer, 
+  List, 
+  ListItem, 
+  ListItemText, 
+  ListItemIcon, 
+  Divider, 
+  useTheme, 
+  styled, 
+  Container, 
+  Button, 
+  Menu, 
+  MenuItem 
+} from '@mui/material';
+import { 
+  Search as SearchIcon, 
+  ShoppingCart, 
+  Menu as MenuIcon, 
+  Person, 
+  SportsSoccer, 
+  SportsCricket,
+  SportsRugby, 
+  SportsVolleyball,
+  ExpandMore,
+  Favorite, 
+  History,
+  ExitToApp
+} from '@mui/icons-material';
+import { useCart } from '../../context/CartContext';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -13,6 +46,7 @@ const Search = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
     width: 'auto',
     flexGrow: 1,
+    maxWidth: 400,
   },
 }));
 
@@ -41,27 +75,96 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    backgroundColor: theme.palette.accent2.main,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+}));
+
+const categories = [
+  { id: 'rugby', name: 'Rugby', icon: <SportsRugby /> },
+  { id: 'volleyball', name: 'Volleyball', icon: <SportsVolleyball /> },
+  { id: 'field-hockey', name: 'Field Hockey', icon: <SportsCricket /> },
+  { id: 'track-field', name: 'Track & Field', icon: <SportsSoccer /> },
+  { id: 'soccer', name: 'Soccer', icon: <SportsSoccer /> },
+  { id: 'off-field', name: 'Off-Field', icon: <SportsSoccer /> },
+];
+
 const Navbar = () => {
   const theme = useTheme();
+  const { cart } = useCart();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
+  const [categoryMenuAnchor, setCategoryMenuAnchor] = useState(null);
+  const [accountMenuAnchor, setAccountMenuAnchor] = useState(null);
+  
+  const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  const handleCategoryMenuOpen = (event) => {
+    setCategoryMenuAnchor(event.currentTarget);
+  };
+
+  const handleCategoryMenuClose = () => {
+    setCategoryMenuAnchor(null);
+  };
+
+  const handleAccountMenuOpen = (event) => {
+    setAccountMenuAnchor(event.currentTarget);
+  };
+
+  const handleAccountMenuClose = () => {
+    setAccountMenuAnchor(null);
+  };
+
   const menuItems = [
-    { text: 'Explore Categories', path: '/categories' },
+    { text: 'Home', path: '/' },
+    { text: 'Products', path: '/products' },
     { text: 'Team Customization', path: '/customize' },
     { text: 'About Us', path: '/about' },
+    { text: 'Contact', path: '/contact' },
   ];
 
   const drawer = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={handleDrawerToggle}>
+    <Box sx={{ width: 280 }} role="presentation">
+      <Box sx={{ p: 2, display: 'flex', justifyContent: 'center' }}>
+        <Link to="/">
+          <Box component="img" src="/images/logo.svg" alt="Hanu Sports" sx={{ height: 40 }} />
+        </Link>
+      </Box>
+      <Divider />
       <List>
         {menuItems.map((item) => (
-          <ListItem button key={item.text} component={Link} to={item.path}>
+          <ListItem 
+            button 
+            key={item.text} 
+            component={Link} 
+            to={item.path}
+            onClick={handleDrawerToggle}
+          >
             <ListItemText primary={item.text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <Box sx={{ p: 2 }}>
+        <Box sx={{ fontWeight: 'bold', mb: 1, px: 2 }}>Categories</Box>
+      </Box>
+      <List>
+        {categories.map((category) => (
+          <ListItem 
+            button 
+            key={category.id} 
+            component={Link} 
+            to={`/categories/${category.id}`}
+            onClick={handleDrawerToggle}
+          >
+            <ListItemIcon>{category.icon}</ListItemIcon>
+            <ListItemText primary={category.name} />
           </ListItem>
         ))}
       </List>
@@ -70,62 +173,176 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar position="sticky" sx={{ backgroundColor: theme.palette.primary.main }}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
+      <AppBar position="sticky" sx={{ 
+        backgroundColor: theme.palette.primary.main, 
+        boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+        color: theme.palette.text.primary 
+      }}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { md: 'none' } }}
+            >
+              <MenuIcon />
+            </IconButton>
 
-          <Link to="/">
-            <Box component="img" src="/images/logo.svg" alt="Hanu Sports" sx={{ height: 45 }} />
-          </Link>
+            <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+              <Box component="img" src="/images/logo.svg" alt="Hanu Sports" sx={{ height: 45, display: { xs: 'none', sm: 'block' } }} />
+              <Box component="img" src="/images/logo-small.svg" alt="Hanu Sports" sx={{ height: 35, display: { xs: 'block', sm: 'none' } }} />
+            </Link>
 
-          <Search>
-            <StyledInputBase
-              placeholder="Search for products..."
-              inputProps={{ 'aria-label': 'search' }}
-            />
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-          </Search>
-
-          <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 3 }}>
-            {menuItems.map((item) => (
-              <Link
-                key={item.text}
-                to={item.path}
-                style={{
-                  color: 'white',
-                  textDecoration: 'none',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, ml: 4 }}>
+              {menuItems.filter(item => item.text !== 'Home').map((item, index) => (
+                <Button
+                  key={item.text}
+                  component={Link}
+                  to={item.path}
+                  sx={{ 
+                    color: theme.palette.text.primary, 
+                    fontWeight: 500,
+                    mx: 1,
+                    '&:hover': {
+                      backgroundColor: 'rgba(0, 0, 0, 0.04)'
+                    }
+                  }}
+                >
+                  {item.text}
+                </Button>
+              ))}
+              <Button
+                endIcon={<ExpandMore />}
+                onClick={handleCategoryMenuOpen}
+                sx={{ 
+                  color: theme.palette.text.primary, 
+                  fontWeight: 500,
+                  mx: 1,
+                  '&:hover': {
+                    backgroundColor: 'rgba(0, 0, 0, 0.04)'
+                  }
                 }}
               >
-                <span style={{ fontSize: '0.8rem' }}>{item.text.split(' ')[0]}</span>
-                <span>{item.text.split(' ')[1]}</span>
-              </Link>
-            ))}
-          </Box>
+                Categories
+              </Button>
+              <Menu
+                anchorEl={categoryMenuAnchor}
+                open={Boolean(categoryMenuAnchor)}
+                onClose={handleCategoryMenuClose}
+                PaperProps={{
+                  sx: {
+                    mt: 1.5,
+                    width: 200,
+                    boxShadow: '0px 8px 16px rgba(0, 0, 0, 0.1)'
+                  },
+                }}
+              >
+                {categories.map((category) => (
+                  <MenuItem 
+                    key={category.id} 
+                    component={Link} 
+                    to={`/categories/${category.id}`}
+                    onClick={handleCategoryMenuClose}
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 2
+                    }}
+                  >
+                    {category.icon}
+                    {category.name}
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
 
-          <Box sx={{ display: 'flex', gap: 2, ml: 2 }}>
-            <IconButton color="inherit" component={Link} to="/account">
-              <Person />
-            </IconButton>
-            <IconButton color="inherit" component={Link} to="/cart">
-              <Badge badgeContent={cartCount} color="accent1">
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-          </Box>
-        </Toolbar>
+            <Search sx={{ ml: { xs: 1, sm: 2 } }}>
+              <StyledInputBase
+                placeholder="Search for products..."
+                inputProps={{ 'aria-label': 'search' }}
+              />
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+            </Search>
+
+            <Box sx={{ display: 'flex', alignItems: 'center', ml: 'auto' }}>
+              <IconButton 
+                color="inherit" 
+                aria-label="account"
+                onClick={handleAccountMenuOpen}
+              >
+                <Person />
+              </IconButton>
+              <Menu
+                anchorEl={accountMenuAnchor}
+                open={Boolean(accountMenuAnchor)}
+                onClose={handleAccountMenuClose}
+                PaperProps={{
+                  sx: {
+                    mt: 1.5,
+                    boxShadow: '0px 8px 16px rgba(0, 0, 0, 0.1)'
+                  },
+                }}
+              >
+                <MenuItem 
+                  component={Link} 
+                  to="/account"
+                  onClick={handleAccountMenuClose}
+                >
+                  <ListItemIcon>
+                    <Person fontSize="small" />
+                  </ListItemIcon>
+                  My Account
+                </MenuItem>
+                <MenuItem 
+                  component={Link} 
+                  to="/orders"
+                  onClick={handleAccountMenuClose}
+                >
+                  <ListItemIcon>
+                    <History fontSize="small" />
+                  </ListItemIcon>
+                  Order History
+                </MenuItem>
+                <MenuItem 
+                  component={Link} 
+                  to="/wishlist"
+                  onClick={handleAccountMenuClose}
+                >
+                  <ListItemIcon>
+                    <Favorite fontSize="small" />
+                  </ListItemIcon>
+                  Wishlist
+                </MenuItem>
+                <Divider />
+                <MenuItem 
+                  component={Link} 
+                  to="/logout"
+                  onClick={handleAccountMenuClose}
+                >
+                  <ListItemIcon>
+                    <ExitToApp fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+              </Menu>
+              
+              <IconButton 
+                color="inherit" 
+                component={Link} 
+                to="/cart"
+                sx={{ ml: 1 }}
+              >
+                <StyledBadge badgeContent={cartItemCount} color="error">
+                  <ShoppingCart />
+                </StyledBadge>
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </Container>
       </AppBar>
 
       <Drawer
@@ -134,7 +351,7 @@ const Navbar = () => {
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}
-        sx={{ display: { xs: 'block', sm: 'none' } }}
+        sx={{ display: { xs: 'block' } }}
       >
         {drawer}
       </Drawer>
