@@ -133,24 +133,23 @@ const Register = () => {
     setServerError('');
     
     try {
-      // In a real app, you would make an API call to register the user
-      const response = await axios.post('http://localhost:5000/api/auth/register', {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        password: formData.password,
-        phoneNumber: formData.phoneNumber || undefined,
-        preferences: {
-          newsletter: formData.newsletter
+      console.log('Registration data:', formData);
+      // Make a direct API call to the registration endpoint
+      const response = await axios.post('http://localhost:5000/api/auth/register', formData, {
+        headers: {
+          'Content-Type': 'application/json'
         }
       });
       
-      // Automatically log in the user
+      console.log('Registration response:', response.data);
+      
+      // Store the token in localStorage
       localStorage.setItem('token', response.data.token);
       
-      // Redirect to home page
+      // Redirect to login page or dashboard
       navigate('/');
     } catch (error) {
+      console.error('Registration error:', error);
       setServerError(
         error.response?.data?.message || 'Registration failed. Please try again.'
       );

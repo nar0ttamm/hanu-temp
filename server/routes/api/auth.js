@@ -10,7 +10,7 @@ const auth = require('../../middleware/auth');
 // @access  Public
 router.post('/register', async (req, res) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, role } = req.body;
 
     // Check if user exists
     let user = await User.findOne({ email });
@@ -23,7 +23,8 @@ router.post('/register', async (req, res) => {
       firstName,
       lastName,
       email,
-      password
+      password,
+      role: role || 'user' // Allow setting role if provided
     });
 
     await user.save();
@@ -46,6 +47,7 @@ router.post('/register', async (req, res) => {
       }
     );
   } catch (err) {
+    console.error('Registration error:', err);
     res.status(500).json({ message: 'Server error' });
   }
 });
@@ -185,6 +187,19 @@ router.post('/reset-password', async (req, res) => {
     res.json({ message: 'Password reset successful' });
   } catch (err) {
     res.status(400).json({ message: 'Invalid token' });
+  }
+});
+
+// @route   GET /api/auth/verify
+// @desc    Verify user token
+// @access  Private
+router.get('/verify', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    res.json({ user });
+  } catch (err) {
+    console.error('Verification error:', err);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 

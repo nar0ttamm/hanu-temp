@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useNavigate, useLocation } from 'react-router-dom';
 import {
   Container,
   Box,
@@ -21,11 +21,13 @@ import {
   Google as GoogleIcon,
   Facebook as FacebookIcon,
 } from '@mui/icons-material';
+import api from '../config/api';
 import axios from 'axios';
 
 const Login = () => {
   const theme = useTheme();
   const navigate = useNavigate();
+  const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -81,15 +83,29 @@ const Login = () => {
     setServerError('');
     
     try {
-      // In a real app, you would make an API call to authenticate the user
-      const response = await axios.post('http://localhost:5000/api/auth/login', formData);
+      // Debugging
+      console.log('Attempting login with:', formData);
+      console.log('API URL:', api.defaults.baseURL);
+      
+      // Use our API client instead of axios directly with the correct endpoint
+      const response = await axios.post('http://localhost:5000/api/auth/login', formData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      console.log('Login response:', response.data);
       
       // Store the token in localStorage
       localStorage.setItem('token', response.data.token);
       
+      // Get the intended destination if redirected
+      const destination = location.state?.from?.pathname || '/';
+      
       // Redirect to home page or the page user was trying to access
-      navigate('/');
+      navigate(destination);
     } catch (error) {
+      console.error('Login error:', error);
       setServerError(
         error.response?.data?.message || 'Login failed. Please try again.'
       );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Grid, Paper, Stack, Button } from '@mui/material';
+import { Box, Typography, Grid, Paper, Button } from '@mui/material';
 import { 
   Inventory as ProductsIcon, 
   ShoppingBag as OrdersIcon, 

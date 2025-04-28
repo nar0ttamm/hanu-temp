@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import axios from 'axios';
 import { Box, CircularProgress, Typography } from '@mui/material';
 
 const ProtectedRoute = ({ requiredRole = null }) => {
@@ -20,13 +19,23 @@ const ProtectedRoute = ({ requiredRole = null }) => {
       }
       
       try {
-        const response = await axios.get('/api/auth/verify', {
-          headers: { Authorization: `Bearer ${token}` }
+        console.log('Verifying auth with token:', token);
+        const response = await fetch('http://localhost:5000/api/auth/verify', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
         });
         
-        if (response.data.user) {
+        if (!response.ok) {
+          throw new Error('Auth verification failed');
+        }
+        
+        const data = await response.json();
+        console.log('Auth verification response:', data);
+        
+        if (data.user) {
           setIsAuthenticated(true);
-          setUserRole(response.data.user.role);
+          setUserRole(data.user.role);
         } else {
           setIsAuthenticated(false);
         }

@@ -3,7 +3,15 @@ const User = require('../models/User');
 
 module.exports = async function (req, res, next) {
   // Get token from header
-  const token = req.header('x-auth-token');
+  let token = req.header('x-auth-token');
+  
+  // Check for Authorization Bearer token if x-auth-token is not provided
+  if (!token) {
+    const authHeader = req.header('Authorization');
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      token = authHeader.substring(7);
+    }
+  }
 
   // Check if no token
   if (!token) {
@@ -15,13 +23,14 @@ module.exports = async function (req, res, next) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'default_secret_key');
 
     // Add user from payload
-    req.user = await User.findById(decoded.id).select('-password');
-    if (!req.user) {
-      return res.status(401).json({ message: 'User not found' });
-    }
+    req.user = {
+      id: decoded.user.id,
+      role: decoded.user.role
+    };
     
     next();
   } catch (err) {
+    console.error('Token verification error:', err);
     res.status(401).json({ message: 'Token is not valid' });
   }
 }; 
