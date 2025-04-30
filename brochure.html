@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanu Sports Industries | Premium Printing Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        @media print {
+            @page {
+                size: letter;
+                margin: 0.5in;
+            }
+            body {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+        }
+        
+        :root {
+            --gold: #FFD700;
+            --silver: #C0C0C0;
+            --bronze: #CD7F32;
+            --orange: #FF8C00;
+            --orangered: #FF4500;
+            --dark: #111111;
+            --light: #FFFFFF;
+            --grey: #333333;
+            --darkblue: #0a1a2a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--light);
+            max-width: 8.5in;
+            margin: 0 auto;
+            background-color: var(--dark);
+        }
+        
+        /* Cover page styling */
+        .cover-page {
+            height: 11in;
+            background: var(--dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+        }
+        
+        .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2in 0.75in;
+            z-index: 3;
+        }
+        
+        .cover-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .triangle-overlay {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 70%;
+            height: 70%;
+            background-color: var(--orange);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%);
+            opacity: 0.8;
+            z-index: 2;
+        }
+        
+        .small-triangle {
+            position: absolute;
+            top: 3rem;
+            left: 10rem;
+            width: 150px;
+            height: 150px;
+            background-color: var(--gold);
+            clip-path: polygon(0 0, 100% 0, 0 100%);
+            opacity: 0.5;
+            z-index: 2;
+        }
+        
+        .dot-pattern {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 100px;
+            height: 100px;
+            background-image: radial-gradient(var(--gold) 2px, transparent 2px);
+            background-size: 10px 10px;
+            z-index: 2;
+        }
+        
+        .cover-content {
+            z-index: 4;
+            text-align: left;
+            position: relative;
+        }
+        
+        .cover-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            color: var(--gold);
+            position: relative;
+            z-index: 4;
+        }
+        
+        .cover-subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            letter-spacing: 1px;
+            color: var(--light);
+        }
+        
+        .cover-description {
+            font-size: 1.2rem;
+            max-width: 5in;
+            margin: 1rem 0;
+            color: var(--light);
+        }
+        
+        .cover-year {
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--silver);
+            text-align: right;
+            margin-top: 2rem;
+        }
+        
+        .logo-container {
+            margin: 3rem 0 4rem 0;
+            position: relative;
+            z-index: 5;
+            width: 100%;
+        }
+
+        .brand-name {
+            position: relative;
+            text-align: left;
+            padding-left: 1rem;
+        }
+
+        .brand-main {
+            font-size: 6.5rem;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, 
+                var(--gold) 0%,
+                #FFFFFF 45%,
+                var(--gold) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            position: relative;
+            text-shadow: 0 0 40px rgba(255,215,0,0.3);
+        }
+
+        .brand-main::before {
+            content: '';
+            position: absolute;
+            left: -1rem;
+            top: 50%;
+            width: 5px;
+            height: 70%;
+            transform: translateY(-50%);
+            background: var(--gold);
+            border-radius: 3px;
+        }
+
+        .brand-sub {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 12px;
+            color: var(--light);
+            text-transform: uppercase;
+            margin-left: 4px;
+            position: relative;
+        }
+
+        .brand-tagline {
+            position: absolute;
+            top: -1.5rem;
+            left: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 6px;
+            color: var(--gold);
+            opacity: 0.9;
+            text-transform: uppercase;
+        }
+
+        .brand-quality {
+            position: absolute;
+            bottom: -2rem;
+            right: 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 6px;
+            color: var(--orange);
+            opacity: 0.9;
+            text-transform: uppercase;
+        }
+
+        .brand-accent {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, 
+                rgba(255,215,0,0.1) 0%,
+                rgba(255,69,0,0.05) 100%);
+            clip-path: polygon(100% 0, 0 0, 100% 100%);
+            z-index: -1;
+        }
+        
+        /* Content pages styling */
+        .content-page {
+            padding: 1in 0.75in;
+            position: relative;
+            min-height: 11in;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow: hidden;
+        }
+        
+        .page-triangle-1 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background-color: var(--orange);
+            clip-path: polygon(100% 0, 100% 100%, 0 0);
+            opacity: 0.5;
+            z-index: 0;
+        }
+        
+        .page-triangle-2 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 350px;
+            height: 350px;
+            background-color: var(--gold);
+            clip-path: polygon(0 100%, 100% 100%, 0 0);
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .page-dots {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            width: 150px;
+            height: 150px;
+            background-image: radial-gradient(var(--gold) 2px, transparent 2px);
+            background-size: 15px 15px;
+            z-index: 0;
+        }
+        
+        .page-header {
+            margin-bottom: 2rem;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+        }
+        
+        .page-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            background: var(--grey);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+        
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--gold);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            z-index: 1;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 5px;
+            background: var(--orangered);
+        }
+        
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--orange);
+            font-size: 1.5rem;
+            margin: 1.5rem 0 0.7rem;
+            font-weight: 600;
+            z-index: 1;
+            position: relative;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Table of Contents styling */
+        .toc {
+            margin: 2rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .toc-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .toc-entry {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .toc-dots {
+            flex-grow: 1;
+            border-bottom: 1px dotted var(--silver);
+            margin: 0 0.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .toc-page {
+            color: var(--gold);
+            font-weight: 500;
+            background: var(--grey);
+            padding: 0.1rem 0.5rem;
+            border-radius: 3px;
+        }
+        
+        /* Product section styling */
+        .product-section {
+            background-color: var(--grey);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .product-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gold), var(--orangered));
+        }
+        
+        .product-section-title {
+            color: var(--gold);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+        }
+        
+        .feature-list {
+            padding-left: 1.5rem;
+            list-style-type: none;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+        
+        /* Product cards */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .product-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            background: var(--grey);
+            position: relative;
+        }
+        
+        .product-image {
+            height: 220px;
+            background-color: var(--dark);
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .product-info {
+            padding: 1.2rem;
+        }
+        
+        .product-name {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--silver);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .product-description {
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--gold);
+            color: var(--dark);
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+        
+        /* Full-width showcase */
+        .showcase {
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 350px;
+            z-index: 1;
+        }
+        
+        .showcase-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .showcase-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+        }
+        
+        .showcase-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 1.5rem;
+            background-color: var(--darkblue);
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        .social-icons {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        /* Testimonials */
+        .testimonial {
+            background-color: var(--grey);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: 500;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author::before {
+            content: '—';
+            margin-right: 0.5rem;
+            color: var(--silver);
+        }
+        
+        /* Contact form */
+        .contact-form-container {
+            background-color: var(--grey);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.3);
+        }
+        
+        .form-row {
+            margin-bottom: 1rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+            color: var(--gold);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid var(--silver);
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            background-color: rgba(255,255,255,0.1);
+            color: var(--light);
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--gold);
+            color: var(--dark);
+            border: none;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        
+        /* Medal and award-inspired design elements */
+        .medal {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .medal-gold {
+            background: var(--gold);
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+        }
+        
+        .medal-silver {
+            background: var(--silver);
+            box-shadow: 0 4px 10px rgba(192, 192, 192, 0.3);
+        }
+        
+        .medal-bronze {
+            background: var(--bronze);
+            box-shadow: 0 4px 10px rgba(205, 127, 50, 0.3);
+        }
+        
+        .ribbon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .ribbon-content {
+            position: absolute;
+            display: block;
+            width: 225px;
+            padding: 15px 0;
+            background-color: var(--gold);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            color: var(--dark);
+            text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            left: -25px;
+            top: 30px;
+            transform: rotate(45deg);
+        }
+        
+        /* Section dividers */
+        .section-divider {
+            height: 4px;
+            background: linear-gradient(to right, var(--gold), transparent);
+            margin: 2rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Vertical arrows like in the reference image */
+        .vertical-arrows {
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1;
+        }
+        
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid var(--gold);
+        }
+        
+        /* Current promos section */
+        .promo-section {
+            background-color: var(--grey);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .promo-title {
+            color: var(--gold);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .promo-item {
+            margin-bottom: 1rem;
+        }
+        
+        .promo-item-title {
+            color: var(--orange);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="cover-page">
+        <div class="cover-background" style="background-image: url('products/soccer/soccer_90_1.jpeg');"></div>
+        <div class="triangle-overlay"></div>
+        <div class="small-triangle"></div>
+        <div class="dot-pattern"></div>
+        <div class="cover-overlay">
+            <div></div>
+            <div class="cover-content">
+                <div class="logo-container">
+                    <div class="brand-name">
+                        <div class="brand-tagline">EST. 2024</div>
+                        <div class="brand-main">HANU</div>
+                        <div class="brand-sub">SPORTS</div>
+                        <div class="brand-quality">PREMIUM QUALITY</div>
+                        <div class="brand-accent"></div>
+                    </div>
+                </div>
+                <h1 class="cover-title">Premium Sports Apparel</h1>
+                <p class="cover-subtitle">Custom Printing Solutions</p>
+                <p class="cover-description">Elevate your team's performance with our professionally designed and printed sports apparel</p>
+            </div>
+            <div class="cover-year">2024 PRODUCT CATALOG</div>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Table of Contents -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">02</div>
+        </div>
+        
+        <h1>TABLE OF CONTENTS</h1>
+        
+        <div class="toc">
+            <div class="toc-entry">
+                <span>Welcome to Hanu Sports Industries</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">03</span>
+            </div>
+            <div class="toc-entry">
+                <span>Our Printing Process</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">04</span>
+            </div>
+            <div class="toc-entry">
+                <span>Soccer Apparel</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">05</span>
+            </div>
+            <div class="toc-entry">
+                <span>Volleyball Collection</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">07</span>
+            </div>
+            <div class="toc-entry">
+                <span>Rugby & Field Hockey</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">09</span>
+            </div>
+            <div class="toc-entry">
+                <span>Track & Field Products</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">11</span>
+            </div>
+            <div class="toc-entry">
+                <span>Off-Field Apparel</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">13</span>
+            </div>
+            <div class="toc-entry">
+                <span>Custom Design Services</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">14</span>
+            </div>
+            <div class="toc-entry">
+                <span>Order & Contact Information</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">15</span>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="showcase">
+            <img src="products/soccer/soccer_89_0.png" alt="Soccer Team Apparel" class="showcase-image">
+            <div class="showcase-overlay">
+                <h2 class="showcase-title">Professionally Designed for Champions</h2>
+                <p>Browse our extensive collection of premium sports apparel</p>
+            </div>
+        </div>
+        
+        <div class="promo-section">
+            <h2 class="promo-title">Current Promos</h2>
+            <div class="promo-item">
+                <div class="promo-item-title">Early Order Discount</div>
+                <p>Secure a 15% discount on your team's apparel when you order at least 8 weeks before your season starts.</p>
+            </div>
+            <div class="promo-item">
+                <div class="promo-item-title">Complete Team Package</div>
+                <p>Order a complete set of home and away kits with custom designs and receive free warm-up shirts for your entire team.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Welcome Page -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">03</div>
+        </div>
+        
+        <h1>WELCOME TO HANU SPORTS INDUSTRIES</h1>
+        
+        <p>Thank you for exploring our 2024 product catalog. At Hanu Sports Industries, we combine cutting-edge printing technology with premium quality fabrics to create sports apparel that helps teams look and perform their best.</p>
+        
+        <div class="vertical-arrows">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+        </div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Why Choose Hanu Sports Industries?</h2>
+            <ul class="feature-list">
+                <li>Premium quality materials that withstand intense athletic performance</li>
+                <li>State-of-the-art printing technology for vibrant, long-lasting designs</li>
+                <li>Custom design services to perfectly capture your team's identity</li>
+                <li>Comprehensive range of apparel for all major sports</li>
+                <li>Quick turnaround times and reliable delivery</li>
+                <li>Eco-friendly production processes and materials</li>
+            </ul>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Our Commitment</h2>
+            <p>At Hanu Sports Industries, we understand that your team's apparel is more than just clothing—it's a statement of identity and professionalism. We are committed to helping you create a cohesive and impressive team look that boosts confidence and team spirit.</p>
+            <p>Our dedicated team works closely with coaches, athletic directors, and team managers to ensure that every detail meets your expectations. From initial design consultation to final delivery, we provide personalized service to make the process seamless.</p>
+        </div>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">"Hanu Sports Industries transformed our team's appearance with their outstanding custom jerseys. The quality of the printing and the comfort of the materials exceeded our expectations. Our players love wearing them, and we've received countless compliments from fans."</p>
+            <div class="testimonial-author">Coach Michael Reynolds, Westfield High School</div>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Printing Process Page -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">04</div>
+        </div>
+        
+        <h1>OUR PRINTING PROCESS</h1>
+        
+        <p>We utilize advanced printing technologies to ensure the highest quality results for your team apparel. Each method offers unique benefits to suit different requirements and preferences.</p>
+        
+        <div class="vertical-arrows">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+        </div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Sublimation Printing</h2>
+            <p>Our premium printing method uses heat to transfer dye onto the fabric at a molecular level. The result is a full-color, vibrant design that will never crack, peel, or fade, even after multiple washes.</p>
+            <ul class="feature-list">
+                <li>Unlimited colors and design possibilities</li>
+                <li>Breathable fabric with no heavy ink layer</li>
+                <li>Permanent designs that won't fade or crack</li>
+                <li>Ideal for complete custom jerseys and complex designs</li>
+            </ul>
+        </div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Screen Printing</h2>
+            <p>Our traditional screen printing process delivers bold, vibrant colors and exceptional durability. Perfect for team uniforms that need to withstand the rigors of athletic competition.</p>
+            <ul class="feature-list">
+                <li>Vivid, opaque colors with excellent coverage</li>
+                <li>Extremely durable and long-lasting</li>
+                <li>Cost-effective for larger quantities</li>
+                <li>Classic, professional finish</li>
+            </ul>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Heat Transfer</h2>
+            <p>Our precision heat transfer process allows for detailed graphics and text to be applied to virtually any fabric. This versatile method is perfect for names, numbers, and logos.</p>
+            <ul class="feature-list">
+                <li>Precise application of complex designs</li>
+                <li>Excellent option for small batches or individual customization</li>
+                <li>Quick turnaround time</li>
+                <li>Great for adding details to pre-existing garments</li>
+            </ul>
+        </div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Embroidery</h2>
+            <p>For a premium, professional look, our embroidery service creates dimensional designs with exceptional durability and a high-end appearance.</p>
+            <ul class="feature-list">
+                <li>Professional, prestigious appearance</li>
+                <li>Extremely durable and long-lasting</li>
+                <li>Ideal for logos, team names, and smaller designs</li>
+                <li>Perfect for jackets, hats, and off-field apparel</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Soccer Apparel Page -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">05</div>
+        </div>
+        
+        <div class="ribbon">
+            <span class="ribbon-content">Featured Sport</span>
+        </div>
+        
+        <h1>SOCCER APPAREL</h1>
+        
+        <p>Our soccer collection combines performance fabrics with dynamic designs to create apparel that helps players perform at their best while looking professional and unified.</p>
+        
+        <div class="vertical-arrows">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-badge">Bestseller</div>
+                <div class="product-image" style="background-image: url('products/soccer/soccer_90_0.jpeg');"></div>
+                <div class="product-info">
+                    <div class="product-category">Jersey</div>
+                    <div class="product-name">Hanu Pro Soccer Jersey</div>
+                    <p class="product-description">Professional-grade breathable fabric with moisture-wicking technology. Custom sublimation printing for unlimited design options.</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('products/soccer/soccer_90_1.jpeg');"></div>
+                <div class="product-info">
+                    <div class="product-category">Team Kit</div>
+                    <div class="product-name">Complete Team Kit</div>
+                    <p class="product-description">Matching jerseys, shorts, and socks designed as a cohesive set. Create a professional look for your entire team.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Soccer Jersey Features</h2>
+            <ul class="feature-list">
+                <li>Lightweight, breathable polyester microfiber material</li>
+                <li>Moisture-wicking technology keeps players dry and comfortable</li>
+                <li>Sublimation printing for vibrant, permanent designs</li>
+                <li>Raglan sleeve option for improved mobility</li>
+                <li>Standard or slim fit designs available</li>
+                <li>Available in both adult and youth sizes</li>
+            </ul>
+        </div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Customization Options</h2>
+            <p>Create a unique identity for your team with our extensive customization options:</p>
+            <ul class="feature-list">
+                <li>Team name and logo on front, back, or sleeves</li>
+                <li>Player names and numbers in various font styles</li>
+                <li>Custom collar and sleeve designs</li>
+                <li>Sponsor logos and additional graphics</li>
+                <li>Match your school or club colors exactly</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Soccer Apparel Page 2 -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">06</div>
+        </div>
+        
+        <h1>SOCCER APPAREL</h1>
+        
+        <div class="showcase">
+            <img src="products/soccer/soccer_88_0.png" alt="Custom Soccer Team Kit" class="showcase-image">
+            <div class="showcase-overlay">
+                <h2 class="showcase-title">Custom Team Designs</h2>
+                <p>Our design team can create unique patterns and graphics tailored to your team's identity</p>
+            </div>
+        </div>
+        
+        <div class="vertical-arrows">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('products/soccer/soccer_90_2.jpeg');"></div>
+                <div class="product-info">
+                    <div class="product-category">Goalkeeper</div>
+                    <div class="product-name">Elite Goalkeeper Kit</div>
+                    <p class="product-description">Specialized jerseys with padded elbows and reinforced fabric for diving. Eye-catching designs to distinguish from field players.</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-badge">New</div>
+                <div class="product-image" style="background-image: url('products/soccer/soccer_89_0.png');"></div>
+                <div class="product-info">
+                    <div class="product-category">Training</div>
+                    <div class="product-name">Performance Training Kit</div>
+                    <p class="product-description">Durable training jerseys and shorts designed for daily practice sessions. Cost-effective solution for high-intensity training.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Soccer Accessories</h2>
+            <ul class="feature-list">
+                <li>Custom printed socks with team colors and logos</li>
+                <li>Warm-up jackets and pants with matching team designs</li>
+                <li>Equipment bags with team logo</li>
+                <li>Custom captain armbands</li>
+                <li>Soccer scarves and fan merchandise</li>
+            </ul>
+        </div>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">"We've been ordering all our soccer team apparel from Hanu Sports Industries for three seasons now. The quality is outstanding, the designs are exactly what we want, and the customer service is exceptional. Our teams look professional and feel confident in their uniforms."</p>
+            <div class="testimonial-author">Sarah Johnson, Athletic Director, Central Valley Soccer Club</div>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Volleyball Collection Page -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">07</div>
+        </div>
+        
+        <h1>VOLLEYBALL COLLECTION</h1>
+        
+        <p>Our volleyball apparel combines style with high-performance materials designed to withstand the demands of competitive play while providing maximum comfort and mobility.</p>
+        
+        <div class="vertical-arrows">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-badge">Premium</div>
+                <div class="product-image" style="background-image: url('products/volleyball/volleyball_40_0.jpeg');"></div>
+                <div class="product-info">
+                    <div class="product-category">Jersey</div>
+                    <div class="product-name">Pro Volleyball Jersey</div>
+                    <p class="product-description">Lightweight, breathable fabric with 4-way stretch for unrestricted movement. Features anti-microbial treatment to prevent odor.</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('products/volleyball/volleyball_40_1.jpeg');"></div>
+                <div class="product-info">
+                    <div class="product-category">Team Kit</div>
+                    <div class="product-name">Hanu Volleyball Set</div>
+                    <p class="product-description">Complete matching set including jerseys and shorts/spandex. Available in men's and women's cuts and sizing.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Volleyball Jersey Features</h2>
+            <ul class="feature-list">
+                <li>Lightweight polyester/spandex blend for stretch and durability</li>
+                <li>Advanced moisture management keeps players dry during intense matches</li>
+                <li>Sublimation printing for vibrant, fade-resistant designs</li>
+                <li>Available in traditional or sleeveless options</li>
+                <li>Women's-specific and men's cuts available</li>
+                <li>Custom side panels and accent options</li>
+            </ul>
+        </div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Women's Volleyball Apparel</h2>
+            <p>Our women's volleyball collection features specialized cuts and designs created specifically for the female athlete:</p>
+            <ul class="feature-list">
+                <li>Tailored fit jerseys that combine comfort with a professional appearance</li>
+                <li>Multiple spandex short options with 2"-4" inseams</li>
+                <li>Compression shorts with anti-ride technology</li>
+                <li>Coordinated warm-up suits with team colors and logos</li>
+                <li>Libero jerseys in contrasting designs</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Volleyball Collection Page 2 -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">08</div>
+        </div>
+        
+        <h1>VOLLEYBALL COLLECTION</h1>
+        
+        <div class="showcase">
+            <img src="products/volleyball/volleyball_39_0.png" alt="Professional Volleyball Team" class="showcase-image">
+            <div class="showcase-overlay">
+                <h2 class="showcase-title">Professional-Grade Quality</h2>
+                <p>Equipment trusted by college and professional teams nationwide</p>
+            </div>
+        </div>
+        
+        <div class="vertical-arrows">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('products/volleyball/volleyball_40_2.jpeg');"></div>
+                <div class="product-info">
+                    <div class="product-category">Men's</div>
+                    <div class="product-name">Men's Volleyball Jersey</div>
+                    <p class="product-description">Designed specifically for men's volleyball with a longer cut and reinforced shoulder construction for powerful hits.</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-badge">Bestseller</div>
+                <div class="product-image" style="background-image: url('products/volleyball/volleyball_38_0.png');"></div>
+                <div class="product-info">
+                    <div class="product-category">Accessories</div>
+                    <div class="product-name">Team Warm-Up Kit</div>
+                    <p class="product-description">Matching jackets and pants for pre-game warm-ups. Features team colors and custom printing options.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Men's Volleyball Apparel</h2>
+            <ul class="feature-list">
+                <li>Relaxed or athletic fit jerseys with reinforced shoulders</li>
+                <li>Longer cut to ensure jerseys stay tucked during play</li>
+                <li>Durable shorts with moisture-wicking liner</li>
+                <li>Coordinating knee pads and accessories</li>
+                <li>Team warm-up suits with custom embroidery options</li>
+            </ul>
+        </div>
+        
+        <div class="showcase">
+            <img src="products/field_hockey/field_hockey_26_0.png" alt="Field Hockey Team" class="showcase-image">
+            <div class="showcase-overlay">
+                <h2 class="showcase-title">Built for Endurance</h2>
+                <p>Apparel designed to withstand the physicality of contact sports</p>
+            </div>
+        </div>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">"Our rugby team has been wearing Hanu Sports Industries jerseys for three seasons, and they've held up amazingly well. The quality of the fabric and stitching is outstanding—exactly what you need for such a physical sport. The custom design process was easy, and they nailed our colors perfectly."</p>
+            <div class="testimonial-author">James Wilson, Eastside Rugby Club President</div>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Rugby & Field Hockey Page -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">09</div>
+        </div>
+        
+        <h1>RUGBY & FIELD HOCKEY</h1>
+        
+        <p>Our rugby and field hockey collections feature rugged, durable apparel designed to withstand the physical demands of these intense sports while providing the comfort and mobility athletes need.</p>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Rugby Collection</h2>
+            <p>Rugby demands the toughest apparel in sports. Our rugby jerseys and shorts are built to last with reinforced seams and durable fabrics that can withstand continuous tackling and physical play.</p>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-badge">Durable</div>
+                <div class="product-image" style="background-image: url('products/rugby/rugby_62_0.png');"></div>
+                <div class="product-info">
+                    <div class="product-category">Rugby</div>
+                    <div class="product-name">Hanu Rugby Jersey</div>
+                    <p class="product-description">Heavy-duty polyester/cotton blend with reinforced collar and stitching to withstand the rigors of intense rugby matches.</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('products/rugby/rugby_63_0.png');"></div>
+                <div class="product-info">
+                    <div class="product-category">Rugby</div>
+                    <div class="product-name">Rugby Shorts</div>
+                    <p class="product-description">Tough, tear-resistant shorts with reinforced seams and a secure drawstring waistband for a perfect fit during intense play.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Rugby Jersey Features</h2>
+            <ul class="feature-list">
+                <li>Heavy-duty fabric with reinforced collar and shoulder seams</li>
+                <li>Traditional or modern fit options available</li>
+                <li>Rubber buttons or no-collar designs available</li>
+                <li>Sublimation printing for complete custom designs</li>
+                <li>Optional grip panels for better ball handling</li>
+            </ul>
+        </div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Field Hockey Collection</h2>
+            <p>Our field hockey uniforms combine durability with lightweight performance fabrics that allow for quick movements and optimal comfort during fast-paced play.</p>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Rugby & Field Hockey Page 2 -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">10</div>
+        </div>
+        
+        <h1>RUGBY & FIELD HOCKEY</h1>
+        
+        <div class="vertical-arrows">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('products/field_hockey/field_hockey_24_0.png');"></div>
+                <div class="product-info">
+                    <div class="product-category">Field Hockey</div>
+                    <div class="product-name">Hanu Field Hockey Jersey</div>
+                    <p class="product-description">Lightweight performance fabric that allows for quick movements and optimal ventilation during intense matches.</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-badge">Complete Set</div>
+                <div class="product-image" style="background-image: url('products/field_hockey/field_hockey_25_0.png');"></div>
+                <div class="product-info">
+                    <div class="product-category">Field Hockey</div>
+                    <div class="product-name">Team Package</div>
+                    <p class="product-description">Complete set including jerseys, skirts/shorts, and socks. Coordinated design across all pieces for a professional team look.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Field Hockey Features</h2>
+            <ul class="feature-list">
+                <li>Lightweight, breathable fabrics for maximum mobility</li>
+                <li>Women's-specific cuts for comfortable fit</li>
+                <li>Moisture-wicking technology keeps players dry</li>
+                <li>Coordinated skirts or shorts with built-in compression</li>
+                <li>Custom sublimation for unlimited design options</li>
+                <li>Special goalkeeper jerseys with padding options</li>
+            </ul>
+        </div>
+        
+        <div class="showcase">
+            <img src="products/field_hockey/field_hockey_26_0.png" alt="Field Hockey Team" class="showcase-image">
+            <div class="showcase-overlay">
+                <h2 class="showcase-title">Built for Endurance</h2>
+                <p>Apparel designed to withstand the physicality of contact sports</p>
+            </div>
+        </div>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">"Our rugby team has been wearing Hanu Sports Industries jerseys for three seasons, and they've held up amazingly well. The quality of the fabric and stitching is outstanding—exactly what you need for such a physical sport. The custom design process was easy, and they nailed our colors perfectly."</p>
+            <div class="testimonial-author">James Wilson, Eastside Rugby Club President</div>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Track & Field Products Page -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">11</div>
+        </div>
+        
+        <h1>TRACK & FIELD PRODUCTS</h1>
+        
+        <p>Our track and field collection features ultra-lightweight, aerodynamic designs that help athletes achieve their personal best while representing their team with pride.</p>
+        
+        <div class="vertical-arrows">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-badge">Performance</div>
+                <div class="product-image" style="background-image: url('products/track_field/track_field_32_0.png');"></div>
+                <div class="product-info">
+                    <div class="product-category">Running</div>
+                    <div class="product-name">Hanu Performance Singlet</div>
+                    <p class="product-description">Ultra-lightweight singlet designed for maximum ventilation and unrestricted movement during competition.</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('products/track_field/track_field_33_0.png');"></div>
+                <div class="product-info">
+                    <div class="product-category">Shorts</div>
+                    <div class="product-name">Competition Running Shorts</div>
+                    <p class="product-description">Streamlined, lightweight shorts with built-in liner. Designed for maximum performance and comfort during races.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Track & Field Features</h2>
+            <ul class="feature-list">
+                <li>Ultra-lightweight fabrics with maximum breathability</li>
+                <li>Moisture-wicking technology for comfort during intense competition</li>
+                <li>Aerodynamic designs to reduce drag</li>
+                <li>Flatlock seams to prevent chafing</li>
+                <li>Full sublimation for vibrant, permanent designs</li>
+                <li>UV protection for outdoor events</li>
+            </ul>
+        </div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Specialized Track Apparel</h2>
+            <p>We offer specialized apparel for different track and field disciplines:</p>
+            <ul class="feature-list">
+                <li>Compression uniforms for jumpers and sprinters</li>
+                <li>Throwing shirts with articulated sleeves for throwers</li>
+                <li>Distance running singlets with enhanced ventilation</li>
+                <li>All-weather warm-up suits for varying conditions</li>
+                <li>Specialized uniforms for multi-event athletes</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Track & Field Products Page 2 -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">12</div>
+        </div>
+        
+        <h1>TRACK & FIELD PRODUCTS</h1>
+        
+        <div class="showcase">
+            <img src="products/track_field/track_field_34_0.png" alt="Track Team Competition" class="showcase-image">
+            <div class="showcase-overlay">
+                <h2 class="showcase-title">Designed for Speed</h2>
+                <p>Lightweight, aerodynamic uniforms that help athletes perform at their best</p>
+            </div>
+        </div>
+        
+        <div class="vertical-arrows">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('products/track_field/track_field_35_0.png');"></div>
+                <div class="product-info">
+                    <div class="product-category">Team Package</div>
+                    <div class="product-name">Complete Track Team Package</div>
+                    <p class="product-description">Comprehensive uniform package including competition gear and warm-ups with consistent team branding across all items.</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-badge">Specialized</div>
+                <div class="product-image" style="background-image: url('products/track_field/track_field_36_0.png');"></div>
+                <div class="product-info">
+                    <div class="product-category">Specialty</div>
+                    <div class="product-name">Field Event Specialties</div>
+                    <p class="product-description">Specialized apparel for throwers, jumpers, and pole vaulters with design features specific to each event's requirements.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Cross Country Collection</h2>
+            <ul class="feature-list">
+                <li>Lightweight singlets and shorts designed for distance running</li>
+                <li>Enhanced moisture management for long races</li>
+                <li>Coordinated team warm-ups for pre-race conditions</li>
+                <li>Custom race bibs and team identification</li>
+                <li>All-weather options for varying race conditions</li>
+            </ul>
+        </div>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">"The track uniforms from Hanu Sports Industries have been a game-changer for our team. The lightweight material is incredibly comfortable, and the custom design makes our athletes stand out at meets. The durability is impressive too—they've maintained their color and shape through an entire season of competitions and washes."</p>
+            <div class="testimonial-author">Coach David Thompson, Metro Track Club</div>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Off-Field Apparel Page -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">13</div>
+        </div>
+        
+        <h1>OFF-FIELD APPAREL</h1>
+        
+        <p>Complete your team's professional image with our extensive collection of off-field apparel, perfect for travel, training, and casual team representation.</p>
+        
+        <div class="vertical-arrows">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-badge">Popular</div>
+                <div class="product-image" style="background-image: url('products/off_field/off_field_15_0.png');"></div>
+                <div class="product-info">
+                    <div class="product-category">Team Travel</div>
+                    <div class="product-name">Team Warm-Up Suit</div>
+                    <p class="product-description">Professional track suit with jacket and pants featuring team colors and logos. Perfect for travel, warm-ups, and cool weather.</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('products/off_field/off_field_16_0.png');"></div>
+                <div class="product-info">
+                    <div class="product-category">Training</div>
+                    <div class="product-name">Performance T-Shirts</div>
+                    <p class="product-description">Comfortable, moisture-wicking t-shirts for training sessions and casual wear. Available in team colors with custom printing.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Team Travel Collection</h2>
+            <ul class="feature-list">
+                <li>Professional warm-up suits with matching jacket and pants</li>
+                <li>Team polo shirts for a unified, polished appearance</li>
+                <li>Lightweight quarter-zip pullovers with team embroidery</li>
+                <li>Team backpacks and equipment bags</li>
+                <li>Custom travel and bench jackets for cold weather</li>
+            </ul>
+        </div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Fan and Spirit Wear</h2>
+            <p>Extend your team branding to supporters with our customizable fan apparel:</p>
+            <ul class="feature-list">
+                <li>Parent and fan t-shirts with team logos and slogans</li>
+                <li>Spirit wear hoodies and sweatshirts</li>
+                <li>Custom team hats and beanies</li>
+                <li>Stadium blankets and weather accessories</li>
+                <li>Team scarves and noisemakers</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Custom Design Services Page -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">14</div>
+        </div>
+        
+        <h1>CUSTOM DESIGN SERVICES</h1>
+        
+        <p>Our professional design team will work with you to create custom apparel that perfectly captures your team's identity and creates a unified, professional appearance.</p>
+        
+        <div class="vertical-arrows">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+        </div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Our Design Process</h2>
+            <p>We make creating custom apparel simple with our streamlined design process:</p>
+            <ul class="feature-list">
+                <li>Initial consultation to understand your team's needs and preferences</li>
+                <li>Professional design concepts based on your input</li>
+                <li>Digital mockups showing how your design will look on the actual products</li>
+                <li>Unlimited revisions until you're completely satisfied</li>
+                <li>Quick turnaround from approval to production</li>
+            </ul>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="showcase">
+            <img src="products/soccer/soccer_88_0.png" alt="Custom Design Process" class="showcase-image">
+            <div class="showcase-overlay">
+                <h2 class="showcase-title">Professional Design Services</h2>
+                <p>Our experienced designers will bring your vision to life</p>
+            </div>
+        </div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Design Elements</h2>
+            <p>Create a cohesive team identity with these custom design elements:</p>
+            <ul class="feature-list">
+                <li>Custom team logos and mascots</li>
+                <li>Uniform patterns and accent designs</li>
+                <li>Coordinated color schemes across all team apparel</li>
+                <li>Number and name typography options</li>
+                <li>Sponsor placement and integration</li>
+            </ul>
+        </div>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">"The design team at Hanu Sports Industries exceeded our expectations. They took our basic idea and transformed it into a professional, eye-catching design that perfectly represents our program. The digital mockups were incredibly helpful in visualizing the final product, and the design process was smooth and collaborative."</p>
+            <div class="testimonial-author">Mark Anderson, Athletic Director, Washington High School</div>
+        </div>
+    </div>
+    
+    <!-- Page Break -->
+    <div class="page-break"></div>
+    
+    <!-- Order & Contact Information Page -->
+    <div class="content-page">
+        <div class="page-triangle-1"></div>
+        <div class="page-triangle-2"></div>
+        <div class="page-dots"></div>
+        
+        <div class="page-header">
+            <div></div>
+            <div class="page-number">15</div>
+        </div>
+        
+        <h1>ORDER & CONTACT INFORMATION</h1>
+        
+        <div class="vertical-arrows">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+        </div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">How to Order</h2>
+            <p>Ordering your custom team apparel is simple with our streamlined process:</p>
+            <ol class="feature-list">
+                <li>Contact our team to discuss your needs and request a quote</li>
+                <li>Work with our designers to create your custom apparel</li>
+                <li>Approve your designs and place your order</li>
+                <li>Receive your high-quality custom apparel within 2-4 weeks</li>
+            </ol>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="contact-form-container">
+            <h2 style="margin-top: 0; color: var(--gold);">Contact Us</h2>
+            <p>Fill out the form below to start your order process or request more information:</p>
+            
+            <div class="form-row">
+                <label class="form-label">Team/Organization Name:</label>
+                <input type="text" class="form-input" placeholder="Enter your team name">
+            </div>
+            
+            <div class="form-row">
+                <label class="form-label">Contact Person:</label>
+                <input type="text" class="form-input" placeholder="Enter contact name">
+            </div>
+            
+            <div class="form-row">
+                <label class="form-label">Email Address:</label>
+                <input type="text" class="form-input" placeholder="Enter email address">
+            </div>
+            
+            <div class="form-row">
+                <label class="form-label">Phone Number:</label>
+                <input type="text" class="form-input" placeholder="Enter phone number">
+            </div>
+            
+            <div class="form-row">
+                <label class="form-label">Sport/Product Type:</label>
+                <input type="text" class="form-input" placeholder="What sport/products are you interested in?">
+            </div>
+            
+            <div class="form-row">
+                <label class="form-label">Estimated Quantity:</label>
+                <input type="text" class="form-input" placeholder="How many items do you need?">
+            </div>
+            
+            <div class="form-row">
+                <label class="form-label">Timeline:</label>
+                <input type="text" class="form-input" placeholder="When do you need your order?">
+            </div>
+            
+            <div class="form-row">
+                <button class="btn">Submit Request</button>
+            </div>
+        </div>
+        
+        <div class="product-section">
+            <h2 class="product-section-title">Contact Information</h2>
+            <p><strong>Phone:</strong> (555) 123-4567</p>
+            <p><strong>Email:</strong> orders@hanusports.com</p>
+            <p><strong>Website:</strong> www.hanusportsindustries.com</p>
+            <p><strong>Address:</strong> 123 Athletic Way, Sportsville, ST 12345</p>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Hanu Sports Industries. All rights reserved.</p>
+            <p>Premium custom sports apparel for teams of all levels.</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon">f</a>
+                <a href="#" class="social-icon">t</a>
+                <a href="#" class="social-icon">i</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
